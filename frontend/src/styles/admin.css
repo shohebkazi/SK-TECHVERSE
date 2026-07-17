@@ -1,0 +1,187 @@
+/* ============================================================
+   SK TECHVERSE — ADMIN PANEL STYLES
+   Import this file in ManageProjects.jsx, Dashboard.jsx,
+   AboutServices.jsx, BlogContactOrderAuth.jsx etc.
+   ============================================================ */
+
+/* ---- Theme variables (agar App.jsx / index.css mein already
+   defined hain to yeh block skip kar sakte ho, duplicate mat karo) ---- */
+:root {
+  --bg: #0a0606;
+  --card: #150c0c;
+  --bdr: rgba(255, 255, 255, 0.08);
+  --bdrh: rgba(255, 255, 255, 0.14);
+  --t1: #f5f0f0;
+  --t2: #c9bcbc;
+  --t3: #8a7a7a;
+  --nb: #3ea6ff;      /* accent blue */
+  --ng: #2ecc71;      /* accent green */
+  --nr: #dc2626;       /* accent red */
+  --ny: #eab308;       /* accent yellow */
+  --fd: 'Poppins', sans-serif;   /* display font */
+  --fb: 'Inter', sans-serif;     /* body font */
+  --fu: 'Inter', sans-serif;     /* ui font */
+}
+
+/* ---- Form Row / Group layout ---- */
+.f-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+.f-row .fg { flex: 1; margin-bottom: 0; }
+
+.fg {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+
+.fl {
+  font-family: var(--fu);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--t2);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Inputs / Select / Textarea ---- */
+.fi,
+.fs,
+.fta {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--bdr);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: var(--t1);
+  font-size: 0.85rem;
+  font-family: var(--fb);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+
+.fi::placeholder,
+.fta::placeholder {
+  color: var(--t3);
+}
+
+.fi:focus,
+.fs:focus,
+.fta:focus {
+  border-color: var(--nb);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.fta {
+  resize: vertical;
+  min-height: 60px;
+  font-family: var(--fb);
+  line-height: 1.5;
+}
+
+.fs {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c9bcbc' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.2rem;
+}
+
+.fs option {
+  background: var(--card);
+  color: var(--t1);
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+  background: linear-gradient(135deg, #3ea6ff, var(--neon-purple));
+  color: #fff;
+  font-family: var(--fu);
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.btn-primary:hover { transform: translateY(-1px); opacity: 0.92; }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* ---- Error box ---- */
+.err-box {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: #ff8a8a;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 1.2rem;
+  font-family: var(--fu);
+}
+
+/* ---- Admin Table ---- */
+.adm-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fu);
+  font-size: 0.82rem;
+}
+
+.adm-tbl thead th {
+  text-align: left;
+  padding: 0.8rem 1rem;
+  color: var(--t3);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--bdr);
+}
+
+.adm-tbl tbody td {
+  padding: 0.8rem 1rem;
+  color: var(--t2);
+  border-bottom: 1px solid var(--bdr);
+  vertical-align: middle;
+}
+
+.adm-tbl tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ---- Badges ---- */
+.bge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.bg-g { background: rgba(46, 204, 113, 0.15); color: var(--ng); }
+.bg-y { background: rgba(234, 179, 8, 0.15); color: var(--ny); }
+.bg-r { background: rgba(220, 38, 38, 0.15); color: var(--nr); }
+.bg-b { background: rgba(62, 166, 255, 0.15); color: var(--nb); }
+.bg-p { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+/* ---- Filter tabs (used on Orders / Messages etc.) ---- */
+.adm-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.adm-tab {
+  font-family: var(--fu); font-size: 0.78rem; font-weight: 600; color: var(--t3);
+  background: var(--card); border: 1px solid var(--bdr); padding: 0.45rem 1rem;
+  border-radius: 100px; cursor: pointer; transition: all 0.2s;
+}
+.adm-tab:hover { color: var(--t1); border-color: var(--bdrh); }
+.adm-tab.active { color: #fff; background: linear-gradient(135deg, var(--nb), #a855f7); border-color: transparent; }
+
+/* ---- Select input (matches .fi look) ---- */
+.fsel {
+  width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--bdr);
+  color: var(--t1); padding: 0.65rem 0.9rem; border-radius: 8px; font-family: var(--fu);
+  font-size: 0.85rem; outline: none; transition: border-color 0.2s;
+}
+.fsel:focus { border-color: var(--bdrh); }
