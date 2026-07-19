@@ -232,8 +232,19 @@ export default function AdminDashboard({ setPage }) {
           ))}
 
           <div style={{ padding:'1rem', borderTop:'1px solid var(--border)', marginTop:'auto', position:'absolute', bottom:0, left:0, right:0 }}>
-            <div className="admin-nav-item" onClick={() => setPage('home')} style={{ color:'#ef4444', borderColor:'transparent' }}>
-              <span>🚪</span><span>Back to Website</span>
+            <div
+              className="admin-nav-item"
+              onClick={() => {
+                if (window.confirm('Are you sure you want to logout?')) {
+                  localStorage.removeItem('sk_token');
+                  localStorage.removeItem('sk_admin');
+                  localStorage.removeItem('sk_user');
+                  setPage('home');
+                }
+              }}
+              style={{ color:'#ef4444', borderColor:'transparent', cursor:'pointer' }}
+            >
+              <span>🚪</span><span>Logout</span>
             </div>
           </div>
         </aside>
