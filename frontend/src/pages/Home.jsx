@@ -53,12 +53,12 @@ export default function HomePage({ setPage }) {
               premium software that scales your business to the next level.
             </p>
 
-            <div style={{ display:'flex', gap:'1rem', justifyContent:'flex-start', flexWrap:'wrap', marginBottom:'4rem' }}>
+            <div className="hero-btns-row" style={{ display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'4rem' }}>
               <button className="btn-primary" onClick={() => setPage('order')}>🚀 Hire Us</button>
               <button className="btn-outline" onClick={() => setPage('projects')}>View Projects →</button>
             </div>
 
-            <div ref={statsRef} className="stats-row" style={{ justifyContent:'flex-start' }}>
+            <div ref={statsRef} className="stats-row hero-stats-row">
               <StatItem value={150} label="Projects Done"      suffix="+" trigger={statsVis} />
               <StatItem value={80}  label="Happy Clients"      suffix="+" trigger={statsVis} />
               <StatItem value={20}  label="Technologies"       suffix="+" trigger={statsVis} />
