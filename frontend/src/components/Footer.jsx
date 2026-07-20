@@ -6,7 +6,8 @@ export default function Footer({ setPage }) {
       <div className="footer-grid">
         {/* Brand */}
         <div>
-          <div className="footer-brand">
+          <div className="footer-brand" style={{ display:'flex', alignItems:'center', gap:'0.6rem' }}>
+            <img src="/assets/logo.png" alt="SK TECHVERSE" style={{ height:32, width:'auto' }} />
             <span style={{ color:'var(--neon-blue)' }}>SK </span>
             <span style={{ color:'var(--neon-purple)' }}>TECHVERSE</span>
           </div>
