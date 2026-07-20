@@ -1,7 +1,6 @@
 import { useCounter, useInView, useTyping } from '../hooks';
 import { SERVICES, TECH_STACK } from '../data';
 import { getTechIcon } from '../data/techIcons';
-import { SiReact, SiTypescript, SiNodedotjs, SiTailwindcss } from 'react-icons/si';
 import Reveal from '../components/Reveal';
 
 function StatItem({ value, label, suffix='+', trigger }) {
@@ -13,13 +12,6 @@ function StatItem({ value, label, suffix='+', trigger }) {
     </div>
   );
 }
-
-// Fixed positions for the star field behind the hero visual — purely decorative.
-const STARS = [
-  { top:'6%',  left:'10%' }, { top:'18%', left:'70%' }, { top:'40%', left:'4%' },
-  { top:'62%', left:'85%' }, { top:'80%', left:'20%' }, { top:'30%', left:'92%' },
-  { top:'70%', left:'55%' }, { top:'10%', left:'45%' },
-];
 
 export default function HomePage({ setPage }) {
   const [statsRef, statsVis] = useInView(0.3);
@@ -66,15 +58,9 @@ export default function HomePage({ setPage }) {
             </div>
           </div>
 
-          {/* Floating 3D-style visual: browser mock + orbiting tech badges */}
+          {/* Product showcase mockup */}
+          <Reveal x={24} y={0} delay={0.15}>
           <div className="hero-visual">
-            <div className="hero-moon" />
-            <div className="hero-stars">
-              {STARS.map((s, i) => (
-                <span key={i} className="hero-star" style={{ top:s.top, left:s.left, animationDelay:`${i * 0.4}s` }} />
-              ))}
-            </div>
-
             <div className="browser-mock">
               <div className="browser-topbar">
                 <span className="browser-dot r" /><span className="browser-dot y" /><span className="browser-dot g" />
@@ -90,12 +76,8 @@ export default function HomePage({ setPage }) {
                 </div>
               </div>
             </div>
-
-            <div className="float-badge b1"><SiReact /></div>
-            <div className="float-badge b2"><SiTypescript /></div>
-            <div className="float-badge b3"><SiNodedotjs /></div>
-            <div className="float-badge b4"><SiTailwindcss /></div>
           </div>
+          </Reveal>
         </div>
       </section>
 

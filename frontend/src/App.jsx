@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider }  from './context/AuthContext';
 
-import Cursor            from './components/Cursor';
-import { Particles, Loader, ScrollProgress } from './components/Effects';
-import AmbientBackground from './components/AmbientBackground';
+import { Loader, ScrollProgress } from './components/Effects';
 import Navbar            from './components/Navbar';
 import Footer            from './components/Footer';
 import ChatBot           from './components/ChatBot';
@@ -59,9 +57,6 @@ export default function App() {
         {!loaded && <Loader onDone={() => setLoaded(true)} />}
         {loaded && (
           <>
-            <AmbientBackground />
-            <Cursor />
-            <Particles />
             <ScrollProgress />
             {showChrome && <Navbar page={page} setPage={setPage} />}
 

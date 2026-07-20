@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
 
 const LINKS = [
   ['Home','home'],['About','about'],['Services','services'],['Projects','projects'],
@@ -8,7 +7,6 @@ const LINKS = [
 ];
 
 export default function Navbar({ page, setPage }) {
-  const { dark, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -33,9 +31,6 @@ export default function Navbar({ page, setPage }) {
           ))}
         </ul>
         <div style={{ display:'flex', alignItems:'center', gap:'0.75rem' }}>
-          <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
-            <div className="toggle-thumb" />
-          </button>
           <button className="nav-cta" onClick={() => go('order')}>Hire Us</button>
           <div className="hamburger" onClick={() => setOpen(!open)}>
             <span /><span /><span />
