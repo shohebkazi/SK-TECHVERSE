@@ -5,27 +5,27 @@
 
 /* ─── CSS VARIABLES ─── */
 :root {
-  --neon-blue:    #0F2148;
-  --neon-purple:  #C9A227;
-  --neon-cyan:    #C9A227;
-  --neon-pink:    #C9A227;
-  --neon-green:   #0F7A5A;
-  --bg-dark:      #FAF9F6;
+  --neon-blue:    #0A0A0A;
+  --neon-purple:  #FF4405;
+  --neon-cyan:    #FF4405;
+  --neon-pink:    #FF4405;
+  --neon-green:   #0F9D58;
+  --bg-dark:      #FFFFFF;
   --bg-card:      #FFFFFF;
-  --bg-card-h:    #FFFDF6;
-  --border:       #E8E3D8;
-  --border-h:     #D9C48A;
-  --text-1:       #0C1A33;
-  --text-2:       #5B5A52;
-  --text-3:       #9A9587;
+  --bg-card-h:    #FAFAFA;
+  --border:       #E7E7E7;
+  --border-h:     #0A0A0A;
+  --text-1:       #0A0A0A;
+  --text-2:       #4B4B4B;
+  --text-3:       #8C8C8C;
   --font-display: 'Clash Display', sans-serif;
   --font-body:    'General Sans', sans-serif;
   --font-ui:      'General Sans', sans-serif;
   /* RGB triplets so every rgba(...) in this file re-themes automatically */
-  --nb-rgb:  15,33,72;
-  --np-rgb:  201,162,39;
-  --nc-rgb:  201,162,39;
-  --bgd-rgb: 250,249,246;
+  --nb-rgb:  10,10,10;
+  --np-rgb:  255,68,5;
+  --nc-rgb:  255,68,5;
+  --bgd-rgb: 255,255,255;
 
   /* ─── Short-name aliases ───
      Some pages (ProjectsAIPricingTest.jsx, AuthPage) reference the
@@ -43,7 +43,7 @@
   --nb:     var(--neon-blue);
   --nc:     var(--neon-cyan);
   --npi:    var(--neon-purple);
-  --na:     #C9A227; /* amber/gold accent, e.g. star ratings */
+  --na:     #FF4405; /* bright accent, e.g. star ratings */
 }
 
 /* ─── BASE ─── */
@@ -59,22 +59,22 @@ body {
   cursor: none;
 }
 body.light {
-  --bg-dark:   #FAF9F6;
+  --bg-dark:   #FFFFFF;
   --bg-card:   #FFFFFF;
-  --bg-card-h: #FFFDF6;
-  --border:    #E8E3D8;
-  --border-h:  #D9C48A;
-  --text-1:    #0C1A33;
-  --text-2:    #5B5A52;
-  --text-3:    #9A9587;
-  --neon-blue:   #0F2148;
-  --neon-purple: #C9A227;
-  --neon-cyan:   #C9A227;
-  --neon-pink:   #C9A227;
-  --nb-rgb:  15,33,72;
-  --np-rgb:  201,162,39;
-  --nc-rgb:  201,162,39;
-  --bgd-rgb: 250,249,246;
+  --bg-card-h: #FAFAFA;
+  --border:    #E7E7E7;
+  --border-h:  #0A0A0A;
+  --text-1:    #0A0A0A;
+  --text-2:    #4B4B4B;
+  --text-3:    #8C8C8C;
+  --neon-blue:   #0A0A0A;
+  --neon-purple: #FF4405;
+  --neon-cyan:   #FF4405;
+  --neon-pink:   #FF4405;
+  --nb-rgb:  10,10,10;
+  --np-rgb:  255,68,5;
+  --nc-rgb:  255,68,5;
+  --bgd-rgb: 255,255,255;
 }
 
 /* ─── SCROLLBAR ─── */
@@ -179,12 +179,12 @@ body.light .navbar.scrolled { background:rgba(240,244,255,0.92); }
 .nav-link:hover::after, .nav-link.active::after { width:100%; }
 
 .nav-cta {
-  font-family:var(--font-ui); font-size:0.78rem; font-weight:600; letter-spacing:0.08em;
+  font-family:var(--font-ui); font-size:0.78rem; font-weight:700; letter-spacing:0.08em;
   padding:0.5rem 1.25rem; border-radius:4px; cursor:pointer; text-transform:uppercase;
-  background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple));
+  background:var(--neon-purple);
   color:#fff; border:none; transition:all 0.3s;
 }
-.nav-cta:hover { transform:translateY(-1px); box-shadow:0 0 30px rgba(var(--nb-rgb),0.4); }
+.nav-cta:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(var(--np-rgb),0.4); }
 @media(max-width:900px){ .nav-cta { display:none; } }
 .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
 .hamburger span { display:block; width:24px; height:2px; background:var(--neon-blue); transition:all 0.3s; }
@@ -265,13 +265,12 @@ body.light .hero-grid {
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 .hero-title {
   font-family:var(--font-display); font-weight:900;
-  font-size:clamp(2.5rem,6.5vw,4.6rem); line-height:1.05; letter-spacing:-0.02em; margin-bottom:1rem;
+  font-size:clamp(2.75rem,7.5vw,5.4rem); line-height:0.98; letter-spacing:-0.03em; margin-bottom:1rem;
 }
 .hero-title .brand {
   display:block;
-  background:linear-gradient(135deg,var(--neon-blue) 0%,var(--neon-purple) 50%,var(--neon-pink) 100%);
+  background:linear-gradient(100deg,var(--neon-blue) 0%,var(--neon-purple) 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 0 30px rgba(var(--nb-rgb),0.3));
 }
 .typing-wrap {
   font-family:var(--font-ui); font-size:clamp(1rem,2.5vw,1.3rem); color:var(--neon-cyan);
