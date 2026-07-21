@@ -5,27 +5,29 @@
 
 /* ─── CSS VARIABLES ─── */
 :root {
-  --neon-blue:    #0A0A0A;
-  --neon-purple:  #FF4405;
-  --neon-cyan:    #FF4405;
-  --neon-pink:    #FF4405;
-  --neon-green:   #0F9D58;
+  --neon-blue:    #0F2148;
+  --neon-purple:  #C9A227;
+  --neon-cyan:    #C9A227;
+  --neon-pink:    #C9A227;
+  --neon-green:   #0F7A5A;
   --bg-dark:      #FFFFFF;
   --bg-card:      #FFFFFF;
-  --bg-card-h:    #FAFAFA;
-  --border:       #E7E7E7;
-  --border-h:     #0A0A0A;
-  --text-1:       #0A0A0A;
-  --text-2:       #4B4B4B;
-  --text-3:       #8C8C8C;
+  --bg-card-h:    #FFFDF6;
+  --border:       #E8E3D8;
+  --border-h:     #D9C48A;
+  --text-1:       #0C1A33;
+  --text-2:       #5B5A52;
+  --text-3:       #9A9587;
   --font-display: 'Clash Display', sans-serif;
   --font-body:    'General Sans', sans-serif;
   --font-ui:      'General Sans', sans-serif;
   /* RGB triplets so every rgba(...) in this file re-themes automatically */
-  --nb-rgb:  10,10,10;
-  --np-rgb:  255,68,5;
-  --nc-rgb:  255,68,5;
+  --nb-rgb:  15,33,72;
+  --np-rgb:  201,162,39;
+  --nc-rgb:  201,162,39;
   --bgd-rgb: 255,255,255;
+  --navy:    #0F2148;
+  --navy-2:  #16305F;
 
   /* ─── Short-name aliases ───
      Some pages (ProjectsAIPricingTest.jsx, AuthPage) reference the
@@ -43,7 +45,7 @@
   --nb:     var(--neon-blue);
   --nc:     var(--neon-cyan);
   --npi:    var(--neon-purple);
-  --na:     #FF4405; /* bright accent, e.g. star ratings */
+  --na:     #C9A227; /* gold accent, e.g. star ratings */
 }
 
 /* ─── BASE ─── */
@@ -691,6 +693,32 @@ body.light .footer { background:rgba(220,228,255,0.97); }
 /* ─── PAGE ANIMATION ─── */
 .page-enter { animation:pageIn 0.45s ease forwards; }
 @keyframes pageIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+/* ─── MOBILE BOTTOM NAV ─── */
+.mobile-bottom-nav {
+  display:none;
+}
+@media(max-width:900px){
+  .mobile-bottom-nav {
+    display:flex; position:fixed; bottom:0; left:0; right:0; z-index:999;
+    background:#fff; border-top:1px solid var(--border);
+    box-shadow:0 -4px 24px rgba(15,23,42,0.08);
+    padding:0.4rem 0.25rem calc(0.4rem + env(safe-area-inset-bottom));
+  }
+  /* keep page content (and the WhatsApp chat bubble) from hiding behind the bar */
+  body { padding-bottom:64px; }
+  .chatbot-toggle, .chatbot-win { bottom:78px !important; }
+}
+.mbn-item {
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:0.2rem; padding:0.4rem 0.2rem; background:none; border:none; cursor:pointer;
+  font-family:var(--font-ui); font-size:0.62rem; font-weight:600; color:var(--text-3);
+  text-decoration:none; transition:color 0.2s;
+}
+.mbn-item svg { font-size:1.15rem; }
+.mbn-item.active { color:var(--neon-blue); }
+.mbn-item.mbn-whatsapp { color:#25D366; }
+.mbn-item.mbn-whatsapp:hover { color:#1EBE57; }
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:480px){
