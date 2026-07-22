@@ -58,31 +58,56 @@ export default function HomePage({ setPage }) {
 
   return (
     <div className="page-enter">
-      {/* ── Hero — diagonal split ── */}
-      <section className="hero-diag">
-        <div className="hero-diag-inner">
-          <div className="hero-diag-left">
-            <div className="hero-badge" style={{ marginBottom:'1.5rem' }}><span className="badge-dot" />We Build Digital Solutions</div>
-            <h1 className="hero-diag-title">
-              Innovate.<br />Build.<br /><span className="gold-text">Grow.</span>
+      {/* ── Hero ── */}
+      <section className="hero">
+        <div className="hero-bg" />
+        <div className="hero-grid" />
+
+        <div className="hero-split">
+          <div className="hero-content">
+            <div className="hero-badge"><span className="badge-dot" />We Build Digital Solutions</div>
+
+            <h1 className="hero-title">
+              <span style={{ display:'block', color:'var(--text-1)' }}>Innovate. Build.</span>
+              <span className="brand">Grow.</span>
             </h1>
-            <p className="hero-diag-sub">
+
+            <div className="typing-wrap">
+              <span style={{ color:'var(--text-2)' }}>Experts in</span>
+              <span style={{ color:'var(--neon-cyan)', fontWeight:600 }}>{typed}</span>
+              <span className="typing-cursor" style={{ color:'var(--neon-blue)' }}>|</span>
+            </div>
+
+            <p className="hero-tagline">
               SK TECHVERSE is a premium digital solutions company helping businesses and startups
-              scale with <strong style={{ color:'var(--text-1)' }}>{typed}</strong> and innovation.
+              scale with technology, design and innovation.
             </p>
-            <div className="hero-diag-btns">
-              <button className="btn-primary" style={{ background:'var(--neon-purple)' }} onClick={() => setPage('services')}>
-                Explore Services <FiArrowRight />
-              </button>
-              <button className="btn-outline" onClick={() => setPage('projects')}>
-                <FiPlay style={{ fontSize:'0.75rem' }} /> View Our Work
-              </button>
+
+            <div className="hero-btns-row" style={{ display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'4rem' }}>
+              <button className="btn-primary" onClick={() => setPage('services')}>Explore Services <FiArrowRight /></button>
+              <button className="btn-outline" onClick={() => setPage('projects')}><FiPlay style={{ fontSize:'0.75rem' }} /> View Our Work</button>
             </div>
           </div>
 
-          <div className="hero-diag-right">
-            <img src="/assets/logo.png" alt="SK TECHVERSE" className="hero-diag-logo" />
+          <Reveal x={24} y={0} delay={0.15}>
+          <div className="hero-visual">
+            <div className="browser-mock">
+              <div className="browser-topbar">
+                <span className="browser-dot r" /><span className="browser-dot y" /><span className="browser-dot g" />
+                <div className="browser-nav" />
+              </div>
+              <div className="browser-body">
+                <span className="browser-badge-mini">Full Stack Development</span>
+                <div className="browser-title-mini">SK TECHVERSE</div>
+                <div className="browser-sub-mini">Building digital experiences with modern technologies and innovative solutions.</div>
+                <div className="browser-btns-mini">
+                  <span className="browser-btn-mini solid">View Work</span>
+                  <span className="browser-btn-mini outline">Get In Touch</span>
+                </div>
+              </div>
+            </div>
           </div>
+          </Reveal>
         </div>
       </section>
 
