@@ -7,20 +7,20 @@
 /* ---- Theme variables (agar App.jsx / index.css mein already
    defined hain to yeh block skip kar sakte ho, duplicate mat karo) ---- */
 :root {
-  --bg: #0a0606;
-  --card: #150c0c;
-  --bdr: rgba(255, 255, 255, 0.08);
-  --bdrh: rgba(255, 255, 255, 0.14);
-  --t1: #f5f0f0;
-  --t2: #c9bcbc;
-  --t3: #8a7a7a;
-  --nb: #3ea6ff;      /* accent blue */
-  --ng: #2ecc71;      /* accent green */
-  --nr: #dc2626;       /* accent red */
-  --ny: #eab308;       /* accent yellow */
-  --fd: 'Poppins', sans-serif;   /* display font */
-  --fb: 'Inter', sans-serif;     /* body font */
-  --fu: 'Inter', sans-serif;     /* ui font */
+  --bg: #0B1220;
+  --card: #0F1A2E;
+  --bdr: #1E293B;
+  --bdrh: rgba(232, 184, 75, 0.45);
+  --t1: #FFFFFF;
+  --t2: #94A3B8;
+  --t3: #64748B;
+  --nb: #E8B84B;      /* gold accent */
+  --ng: #34D399;      /* accent green */
+  --nr: #ef4444;       /* accent red */
+  --ny: #E8B84B;       /* accent gold/yellow */
+  --fd: 'Clash Display', sans-serif;   /* display font */
+  --fb: 'General Sans', sans-serif;    /* body font */
+  --fu: 'General Sans', sans-serif;    /* ui font */
 }
 
 /* ---- Form Row / Group layout ---- */
@@ -165,7 +165,7 @@
 .bg-g { background: rgba(46, 204, 113, 0.15); color: var(--ng); }
 .bg-y { background: rgba(234, 179, 8, 0.15); color: var(--ny); }
 .bg-r { background: rgba(220, 38, 38, 0.15); color: var(--nr); }
-.bg-b { background: rgba(62, 166, 255, 0.15); color: var(--nb); }
+.bg-b { background: rgba(232, 184, 75, 0.15); color: var(--nb); }
 .bg-p { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
 
 /* ---- Filter tabs (used on Orders / Messages etc.) ---- */

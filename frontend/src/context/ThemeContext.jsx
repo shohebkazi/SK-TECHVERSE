@@ -9,7 +9,7 @@ const ThemeContext = createContext(null);
  * it's restored the moment they leave the admin area.
  */
 export function ThemeProvider({ children, lockDark = false }) {
-  const [dark, setDark] = useState(false); // professional white theme is the default look
+  const [dark, setDark] = useState(true); // navy dark theme is the site's only look now
 
   useEffect(() => {
     document.body.classList.toggle('light', !dark && !lockDark);
