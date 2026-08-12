@@ -155,11 +155,17 @@ body.light {
   border-bottom:1px solid var(--border); padding:0.7rem 2rem;
 }
 .nav-logo { font-family:var(--font-display); font-size:1.15rem; font-weight:900; cursor:pointer; white-space:nowrap; display:flex; align-items:center; gap:0.6rem; }
-.nav-logo-img { height:38px; width:auto; }
+.nav-logo-img { height:38px; width:auto; filter:drop-shadow(0 0 10px rgba(var(--nb-rgb),0.45)); transition:filter 0.3s, transform 0.3s; }
+.nav-logo:hover .nav-logo-img { filter:drop-shadow(0 0 18px rgba(var(--nb-rgb),0.75)); transform:scale(1.04); }
 .nav-logo-text { display:flex; flex-direction:column; line-height:1.15; }
 .nav-logo-name { font-family:var(--font-display); font-size:1.05rem; font-weight:800; color:var(--text-1); letter-spacing:0.01em; }
 .nav-logo-tag { font-family:var(--font-ui); font-size:0.58rem; font-weight:600; color:var(--neon-purple); letter-spacing:0.14em; }
-@media(max-width:380px){ .nav-logo-name { font-size:0.9rem; } .nav-logo-img { height:30px; } .nav-logo-tag { display:none; } }
+@media(max-width:900px){
+  .nav-logo-img { height:44px; filter:drop-shadow(0 0 16px rgba(var(--nb-rgb),0.6)); }
+  .nav-logo-name { font-size:1.2rem; background:linear-gradient(135deg,var(--text-1) 30%,var(--neon-cyan) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .nav-logo-tag { font-size:0.62rem; }
+}
+@media(max-width:380px){ .nav-logo-name { font-size:1.05rem; } .nav-logo-img { height:38px; } .nav-logo-tag { display:none; } }
 .nav-logo .blue { color:var(--neon-blue); }
 .nav-logo .purple { color:var(--neon-purple); }
 .nav-links { display:flex; gap:1.75rem; list-style:none; }
@@ -184,9 +190,21 @@ body.light {
 }
 .nav-cta:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(var(--np-rgb),0.4); }
 @media(max-width:900px){ .nav-cta { display:none; } }
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-.hamburger span { display:block; width:24px; height:2px; background:var(--neon-blue); transition:all 0.3s; }
-@media(max-width:900px){ .hamburger{display:flex;} }
+
+/* ─── MOBILE MENU BUTTON (three-dot / kebab) ─── */
+.menu-dots {
+  display:none; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  width:42px; height:42px; border-radius:12px; cursor:pointer;
+  background:rgba(var(--nb-rgb),0.08); border:1px solid rgba(var(--nb-rgb),0.28);
+  box-shadow:0 4px 14px rgba(var(--nb-rgb),0.12); transition:all 0.3s;
+}
+.menu-dots:hover, .menu-dots.open { background:rgba(var(--nb-rgb),0.18); border-color:rgba(var(--nb-rgb),0.5); transform:translateY(-1px); }
+.menu-dots span {
+  width:5px; height:5px; border-radius:50%; background:var(--neon-blue);
+  box-shadow:0 0 6px rgba(var(--nb-rgb),0.7); transition:all 0.3s;
+}
+.menu-dots.open span { background:var(--neon-purple); box-shadow:0 0 8px rgba(var(--np-rgb),0.8); }
+@media(max-width:900px){ .menu-dots{display:flex;} }
 
 /* ─── MOBILE DRAWER ─── */
 .mobile-drawer {
@@ -742,19 +760,8 @@ body.light .footer { background:rgba(220,228,255,0.97); }
 .page-enter { animation:pageIn 0.45s ease forwards; }
 @keyframes pageIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 
-/* ─── MOBILE BOTTOM NAV ─── */
+/* ─── MOBILE BOTTOM NAV (removed from layout — kept as unused CSS) ─── */
 .mobile-bottom-nav { display:none; }
-@media(max-width:900px){
-  .mobile-bottom-nav {
-    display:block; position:fixed; bottom:0; left:0; right:0; z-index:999;
-    background:#fff; border-top:1px solid var(--border);
-    border-radius:20px 20px 0 0;
-    box-shadow:0 -8px 30px rgba(0,0,0,0.35);
-    padding-bottom:env(safe-area-inset-bottom);
-  }
-  body { padding-bottom:76px; }
-  .chatbot-toggle, .chatbot-win { bottom:88px !important; }
-}
 .mbn-row { display:flex; align-items:flex-end; justify-content:space-around; padding:0.5rem 0.25rem 0.6rem; }
 
 .mbn-item {

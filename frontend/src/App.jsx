@@ -5,7 +5,6 @@ import { AuthProvider }  from './context/AuthContext';
 import { Loader, ScrollProgress } from './components/Effects';
 import Navbar            from './components/Navbar';
 import Footer            from './components/Footer';
-import MobileBottomNav   from './components/MobileBottomNav';
 import ChatBot           from './components/ChatBot';
 import { FaWhatsapp }    from 'react-icons/fa6';
 
@@ -78,7 +77,6 @@ export default function App() {
             {page==='admin'        && <AdminDashboard     setPage={setPage}/>}
 
             {showChrome && <Footer setPage={setPage} />}
-            {showChrome && <MobileBottomNav page={page} setPage={setPage} />}
             <ChatBot />
             <a href="https://wa.me/917410721438" target="_blank" rel="noopener noreferrer" className="wa-fab"><FaWhatsapp /></a>
           </>

@@ -36,7 +36,7 @@ export default function Navbar({ page, setPage }) {
         </ul>
         <div style={{ display:'flex', alignItems:'center', gap:'0.75rem' }}>
           <button className="nav-cta" onClick={() => go('order')}>Hire Us</button>
-          <div className="hamburger" onClick={() => setOpen(!open)}>
+          <div className={`menu-dots${open ? ' open' : ''}`} onClick={() => setOpen(!open)} aria-label="Menu">
             <span /><span /><span />
           </div>
         </div>
