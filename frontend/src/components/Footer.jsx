@@ -1,5 +1,16 @@
+import { FaXTwitter, FaLinkedinIn, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
+import { FiMail, FiPhone, FiGlobe, FiMapPin } from 'react-icons/fi';
+
 export default function Footer({ setPage }) {
   const grad = { background:'linear-gradient(135deg,var(--neon-blue),var(--neon-purple))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' };
+
+  const SOCIALS = [
+    { Icon: FaXTwitter,   href: '#', label: 'X (Twitter)' },
+    { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
+    { Icon: FaInstagram,  href: '#', label: 'Instagram' },
+    { Icon: FaYoutube,    href: '#', label: 'YouTube' },
+    { Icon: FaWhatsapp,   href: 'https://wa.me/917410724138', label: 'WhatsApp' },
+  ];
 
   return (
     <footer className="footer">
@@ -16,8 +27,10 @@ export default function Footer({ setPage }) {
             Your trusted tech partner for innovative, scalable software.
           </p>
           <div className="footer-socials">
-            {[['𝕏','#'],['in','#'],['🐙','#'],['📘','#'],['📺','#']].map(([icon, href], i) => (
-              <a key={i} href={href} className="social-btn" onClick={e => e.preventDefault()}>{icon}</a>
+            {SOCIALS.map(({ Icon, href, label }, i) => (
+              <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="social-btn" aria-label={label} title={label}>
+                <Icon />
+              </a>
             ))}
           </div>
         </div>
@@ -45,12 +58,12 @@ export default function Footer({ setPage }) {
         {/* Contact */}
         <div>
           <div className="footer-heading">Contact</div>
-          <ul className="footer-links">
-            <li><a>📧 skteckverse@gmail.com</a></li>
-            <li><a>📞 +91-7410724138</a></li>
-            <li><a>💬 WhatsApp (24/7)</a></li>
-            <li><a>🌐 sktechverse.com</a></li>
-            <li><a>📍 India (Remote + On-site)</a></li>
+          <ul className="footer-links footer-links-icon">
+            <li><a href="mailto:skteckverse@gmail.com"><FiMail /> skteckverse@gmail.com</a></li>
+            <li><a href="tel:+917410724138"><FiPhone /> +91-7410724138</a></li>
+            <li><a href="https://wa.me/917410724138" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp (24/7)</a></li>
+            <li><a href="https://sktechverse.com" target="_blank" rel="noopener noreferrer"><FiGlobe /> sktechverse.com</a></li>
+            <li><a><FiMapPin /> India (Remote + On-site)</a></li>
           </ul>
         </div>
       </div>

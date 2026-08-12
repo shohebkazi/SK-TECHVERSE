@@ -5,13 +5,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary:   '#00d4ff',
-        secondary: '#a855f7',
-        accent:    '#06b6d4',
-        pink:      '#ec4899',
+        primary:   '#A855F7',
+        secondary: '#9333EA',
+        accent:    '#C084FC',
+        pink:      '#D946EF',
         green:     '#10b981',
-        dark:      '#020409',
-        card:      'rgba(255,255,255,0.03)',
+        dark:      '#060309',
+        card:      'rgba(168,85,247,0.05)',
       },
       fontFamily: {
         display: ['Orbitron', 'monospace'],

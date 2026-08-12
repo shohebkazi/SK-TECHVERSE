@@ -4,7 +4,7 @@ import { SERVICES, TECH_STACK } from '../data';
 import { getTechIcon } from '../data/techIcons';
 import { resolveImageUrl } from '../utils/image';
 import Reveal from '../components/Reveal';
-import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone } from 'react-icons/fi';
+import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2 } from 'react-icons/fi';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 const FILE_BASE = API.replace('/api', '');
@@ -91,25 +91,78 @@ export default function HomePage({ setPage }) {
 
           <Reveal x={24} y={0} delay={0.15}>
           <div className="hero-visual">
-            <div className="browser-mock">
-              <div className="browser-topbar">
-                <span className="browser-dot r" /><span className="browser-dot y" /><span className="browser-dot g" />
-                <div className="browser-nav" />
-              </div>
-              <div className="browser-body">
-                <span className="browser-badge-mini">Full Stack Development</span>
-                <div className="browser-title-mini">SK TECHVERSE</div>
-                <div className="browser-sub-mini">Building digital experiences with modern technologies and innovative solutions.</div>
-                <div className="browser-btns-mini">
-                  <span className="browser-btn-mini solid">View Work</span>
-                  <span className="browser-btn-mini outline">Get In Touch</span>
+            <div className="growth-visual">
+              <div className="growth-card">
+                <div className="growth-card-header">
+                  <span className="growth-card-badge">AI-Powered</span>
+                  <span className="growth-card-live"><span className="live-dot" /> Live</span>
+                </div>
+                <div className="growth-card-title">Web & App Growth Engine</div>
+                <div className="growth-card-chart">
+                  {[38, 55, 46, 68, 60, 82, 72, 95].map((h, i) => (
+                    <div key={i} className="growth-bar" style={{ height: `${h}%`, animationDelay: `${i * 0.15}s` }} />
+                  ))}
+                </div>
+                <div className="growth-card-stats-row">
+                  <div>
+                    <span className="growth-stat-num">+247%</span>
+                    <span className="growth-stat-label">Traffic Growth</span>
+                  </div>
+                  <div>
+                    <span className="growth-stat-num">98%</span>
+                    <span className="growth-stat-label">Client Satisfaction</span>
+                  </div>
+                </div>
+                <div className="growth-card-tags">
+                  <span className="growth-tag">AI Solutions</span>
+                  <span className="growth-tag">Web Dev</span>
+                  <span className="growth-tag">Mobile Apps</span>
+                  <span className="growth-tag">Cloud</span>
                 </div>
               </div>
+              <div className="growth-float-badge top"><FiTrendingUp /> +150% ROI</div>
+              <div className="growth-float-badge bottom"><FiCode /> 200+ Projects</div>
             </div>
           </div>
           </Reveal>
         </div>
       </section>
+
+      {/* ── Feature strip ── */}
+      <Reveal>
+        <section className="feature-strip">
+          <div className="feature-strip-inner">
+            <div className="feature-strip-item">
+              <div className="feature-strip-icon"><FiTrendingUp /></div>
+              <div>
+                <div className="feature-strip-title">Data Driven</div>
+                <div className="feature-strip-sub">Strategies</div>
+              </div>
+            </div>
+            <div className="feature-strip-item">
+              <div className="feature-strip-icon"><FiTarget /></div>
+              <div>
+                <div className="feature-strip-title">Results</div>
+                <div className="feature-strip-sub">That Matter</div>
+              </div>
+            </div>
+            <div className="feature-strip-item">
+              <div className="feature-strip-icon"><FiZap /></div>
+              <div>
+                <div className="feature-strip-title">Creative Minds</div>
+                <div className="feature-strip-sub">Real Impact</div>
+              </div>
+            </div>
+            <div className="feature-strip-item">
+              <div className="feature-strip-icon"><FiBarChart2 /></div>
+              <div>
+                <div className="feature-strip-title">Focused On</div>
+                <div className="feature-strip-sub">Your Growth</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
       {/* ── Trusted-by tech strip + stats ── */}
       <Reveal>
