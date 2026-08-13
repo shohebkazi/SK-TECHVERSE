@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useCounter, useInView, useTyping } from '../hooks';
 import { SERVICES, TECH_STACK } from '../data';
 import { getTechIcon } from '../data/techIcons';
 import { resolveImageUrl } from '../utils/image';
 import Reveal from '../components/Reveal';
+import DepthCarousel from '../components/DepthCarousel';
 import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2 } from 'react-icons/fi';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
@@ -54,9 +55,8 @@ export default function HomePage({ setPage }) {
   const [statsRef, statsVis] = useInView(0.3);
   const typed = useTyping(['AI-Powered Solutions','Web Applications','Mobile Apps','ERP Systems','Custom Software']);
   const [projects, setProjects] = useState([]);
-  const [activeProject, setActiveProject] = useState(0);
-  const projTrackRef = useRef(null);
   const [projLoading, setProjLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth <= 640);
 
   useEffect(() => {
     fetch(`${API}/projects?limit=3`)
@@ -66,42 +66,13 @@ export default function HomePage({ setPage }) {
       .finally(() => setProjLoading(false));
   }, []);
 
-  // Auto-advance the mobile project carousel every 4s (pauses on manual touch)
+  // Track viewport width so the featured-project carousel can switch to
+  // square cards on mobile without ever touching the page's scroll position.
   useEffect(() => {
-    if (projects.length < 2) return;
-    let paused = false;
-    const track = projTrackRef.current;
-    const pause = () => { paused = true; clearTimeout(pause._t); pause._t = setTimeout(() => { paused = false; }, 6000); };
-    if (track) { track.addEventListener('touchstart', pause, { passive:true }); track.addEventListener('wheel', pause, { passive:true }); }
-    const timer = setInterval(() => {
-      if (paused || !track) return;
-      const next = (activeProject + 1) % projects.length;
-      const card = track.children[next];
-      if (card) card.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
-    }, 4500);
-    return () => {
-      clearInterval(timer);
-      if (track) { track.removeEventListener('touchstart', pause); track.removeEventListener('wheel', pause); }
-    };
-  }, [projects, activeProject]);
-
-  // Track which slide is centered as the user swipes, to drive the dots
-  const handleProjScroll = () => {
-    const track = projTrackRef.current;
-    if (!track) return;
-    const center = track.scrollLeft + track.clientWidth / 2;
-    let closest = 0, min = Infinity;
-    [...track.children].forEach((child, i) => {
-      const dist = Math.abs((child.offsetLeft + child.clientWidth / 2) - center);
-      if (dist < min) { min = dist; closest = i; }
-    });
-    setActiveProject(closest);
-  };
-  const goToProject = (i) => {
-    const track = projTrackRef.current;
-    const card = track?.children[i];
-    if (card) card.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
-  };
+    const onResize = () => setIsMobile(window.innerWidth <= 640);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   return (
     <div className="page-enter">
@@ -287,34 +258,34 @@ export default function HomePage({ setPage }) {
             ) : projects.length === 0 ? (
               <div style={{ textAlign:'center', padding:'2rem', color:'rgba(255,255,255,0.6)' }}>No projects yet — check back soon.</div>
             ) : (
-              <div className="proj-hero-track" ref={projTrackRef} onScroll={handleProjScroll}>
-                {projects.map((p, i) => (
-                  <Reveal key={p._id || i} delay={Math.min(i * 0.08, 0.3)}>
-                    <div className="proj-hero-slide" onClick={() => setPage('projectDetail', p._id)}>
-                      <img
-                        src={p.image ? resolveImageUrl(p.image, FILE_BASE) : placeholderThumb(p.title)}
-                        alt={p.title}
-                        loading="lazy"
-                        onError={(e) => { e.currentTarget.src = placeholderThumb(p.title); }}
-                      />
-                      <div className="proj-hero-overlay" />
-                      <span className="proj-hero-tag">{p.category || 'Web Development'}</span>
-                      <div className="proj-hero-body">
-                        <div className="proj-hero-kicker">Featured Project · {p.category || 'Web'}</div>
-                        <div className="proj-hero-title">{p.title}</div>
-                        <p className="proj-hero-desc">{p.description}</p>
-                        <div className="proj-hero-cta">View Case Study <FiArrowRight /></div>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            )}
-            {!projLoading && projects.length > 1 && (
-              <div className="projects-dots">
-                {projects.map((_, i) => (
-                  <button key={i} className={`projects-dot${i === activeProject ? ' active' : ''}`} onClick={() => goToProject(i)} aria-label={`Go to project ${i + 1}`} />
-                ))}
+              <div style={{ height: isMobile ? 420 : 500, position:'relative' }}>
+                <DepthCarousel
+                  items={projects.map(p => ({
+                    id: p._id,
+                    image: p.image ? resolveImageUrl(p.image, FILE_BASE) : placeholderThumb(p.title),
+                    alt: p.title,
+                    title: p.title,
+                    category: p.category || 'Web Development',
+                    description: p.description,
+                  }))}
+                  cardWidth={isMobile ? 240 : 340}
+                  cardHeight={isMobile ? 240 : 430}
+                  radius={22}
+                  depth={isMobile ? 130 : 220}
+                  spread={isMobile ? 46 : 90}
+                  tilt={20}
+                  tiltDirection="right"
+                  perspective={1400}
+                  visibleCards={3}
+                  falloff={0.22}
+                  blur={5}
+                  autoplay
+                  autoplayDelay={4200}
+                  loop
+                  showControls={!isMobile}
+                  showIndicators
+                  onCardAction={(item) => setPage('projectDetail', item.id)}
+                />
               </div>
             )}
           </div>
