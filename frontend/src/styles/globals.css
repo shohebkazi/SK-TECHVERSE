@@ -528,6 +528,11 @@ body.light .hero-grid {
 /* ─── SECTIONS ─── */
 .section { padding:6rem 2rem; position:relative; }
 .section-inner { max-width:1200px; margin:0 auto; }
+
+.proj-carousel-wrap { width:100%; }
+@media(max-width:640px){
+  .proj-carousel-wrap { width:calc(100% + 4rem); margin-left:-2rem; margin-right:-2rem; }
+}
 .section-tag {
   display:inline-flex; align-items:center; gap:0.5rem;
   font-family:var(--font-ui); font-size:0.72rem; font-weight:600; letter-spacing:0.15em;

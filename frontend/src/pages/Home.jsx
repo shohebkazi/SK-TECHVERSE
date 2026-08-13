@@ -258,7 +258,7 @@ export default function HomePage({ setPage }) {
             ) : projects.length === 0 ? (
               <div style={{ textAlign:'center', padding:'2rem', color:'rgba(255,255,255,0.6)' }}>No projects yet — check back soon.</div>
             ) : (
-              <div style={{ height: isMobile ? 420 : 500, position:'relative' }}>
+              <div className="proj-carousel-wrap" style={{ height: isMobile ? 440 : 500, position:'relative' }}>
                 <DepthCarousel
                   items={projects.map(p => ({
                     id: p._id,
@@ -268,15 +268,15 @@ export default function HomePage({ setPage }) {
                     category: p.category || 'Web Development',
                     description: p.description,
                   }))}
-                  cardWidth={isMobile ? 240 : 340}
-                  cardHeight={isMobile ? 240 : 430}
+                  cardWidth={isMobile ? 300 : 340}
+                  cardHeight={isMobile ? 300 : 430}
                   radius={22}
-                  depth={isMobile ? 130 : 220}
-                  spread={isMobile ? 46 : 90}
-                  tilt={20}
+                  depth={isMobile ? 90 : 220}
+                  spread={isMobile ? 18 : 90}
+                  tilt={isMobile ? 14 : 20}
                   tiltDirection="right"
                   perspective={1400}
-                  visibleCards={3}
+                  visibleCards={isMobile ? 2 : 3}
                   falloff={0.22}
                   blur={5}
                   autoplay

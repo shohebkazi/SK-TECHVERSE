@@ -50,6 +50,7 @@ const DepthCarousel = ({
   const scaleRef = useRef(1);
   const cfgRef = useRef({});
   const onChangeRef = useRef(onChange);
+  const onCardActionRef = useRef(onCardAction);
 
   const dragRef = useRef(null);
   const wheelTimerRef = useRef(null);
@@ -59,6 +60,7 @@ const DepthCarousel = ({
   const [active, setActive] = useState(0);
 
   onChangeRef.current = onChange;
+  onCardActionRef.current = onCardAction;
   cfgRef.current = {
     count,
     depth,
@@ -274,9 +276,13 @@ const DepthCarousel = ({
   const onCardClick = useCallback(
     index => {
       if (dragRef.current?.moved) return;
+      if (index === focusRef.current) {
+        onCardActionRef.current?.(data[index]);
+        return;
+      }
       setFocus(index, true);
     },
-    [setFocus]
+    [setFocus, data]
   );
 
   // Autoplay is purely internal (GSAP tweening transforms on this component's
@@ -377,7 +383,7 @@ const DepthCarousel = ({
                     <button
                       type="button"
                       className="depth-carousel__cta"
-                      onClick={e => { e.stopPropagation(); if (active === i) onCardAction(item); else onCardClick(i); }}
+                      onClick={e => { e.stopPropagation(); onCardClick(i); }}
                     >
                       View Case Study →
                     </button>
