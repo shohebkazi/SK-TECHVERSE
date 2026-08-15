@@ -585,6 +585,29 @@ body.light .tech-slider::after  { background:linear-gradient(-90deg,var(--bg-dar
 .service-arrow { display:inline-flex; align-items:center; gap:0.4rem; margin-top:1rem; font-family:var(--font-ui); font-size:0.78rem; font-weight:600; color:var(--neon-blue); text-transform:uppercase; opacity:0; transition:opacity 0.3s; cursor:pointer; }
 .glass-card:hover .service-arrow { opacity:1; }
 
+/* Numbered corner badge (used on service + process cards) */
+.card-badge {
+  position:absolute; top:1rem; right:1rem; width:28px; height:28px; border-radius:50%;
+  background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple)); color:#fff;
+  font-family:var(--font-ui); font-weight:800; font-size:0.68rem;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 16px rgba(var(--nb-rgb),0.4); z-index:2;
+}
+.glass-card { position:relative; border-color:rgba(var(--nb-rgb),0.14); }
+
+/* Feature checklist under the description */
+.service-features { list-style:none; display:flex; flex-direction:column; gap:0.5rem; margin:1rem 0 1.4rem; }
+.service-features li { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:var(--text-2); }
+.service-features li svg { color:#22C55E; flex-shrink:0; font-size:0.85rem; }
+
+/* Solid pill CTA button ("Explore More") */
+.service-cta {
+  display:inline-flex; align-items:center; justify-content:center; gap:0.4rem; width:100%;
+  background:var(--neon-purple); color:#fff; font-family:var(--font-ui); font-weight:700; font-size:0.82rem;
+  padding:0.65rem 1rem; border-radius:8px; border:none; cursor:pointer; transition:all 0.3s; text-decoration:none;
+}
+.service-cta:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--np-rgb),0.4); background:var(--neon-blue); }
+
 /* ─── PROJECT CARDS ─── */
 .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.5rem; }
 @media(max-width:480px){ .projects-grid{grid-template-columns:1fr;} }
@@ -897,16 +920,25 @@ body.light .footer { background:rgba(220,228,255,0.97); }
 .service-arrow.gold { color:var(--neon-purple); opacity:1; }
 
 /* ─── PROCESS STEPS ─── */
-.process-row { display:flex; align-items:flex-start; gap:0.5rem; }
+.process-row { display:flex; align-items:flex-start; gap:0.9rem; }
 @media(max-width:900px){ .process-row { flex-direction:column; align-items:stretch; } }
-.process-step { display:flex; align-items:flex-start; flex:1; gap:0.5rem; }
+.process-step { display:flex; align-items:center; flex:1; gap:0.5rem; }
 @media(max-width:900px){ .process-step { flex-direction:column; } }
-.process-step-inner { text-align:center; flex:1; }
-.process-circle { width:56px; height:56px; border-radius:50%; background:var(--navy); color:var(--neon-purple); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin:0 auto 1rem; }
+.process-step-inner {
+  position:relative; text-align:center; flex:1; width:100%;
+  background:var(--bg-card); border:1px solid rgba(var(--nb-rgb),0.16); border-radius:16px;
+  padding:2rem 1.25rem 1.5rem; transition:all 0.3s;
+}
+.process-step-inner:hover { border-color:var(--border-h); transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.35),0 0 0 1px rgba(var(--nb-rgb),0.1); }
+.process-circle {
+  width:52px; height:52px; border-radius:50%; background:rgba(var(--nb-rgb),0.1);
+  border:1px solid rgba(var(--nb-rgb),0.3); color:var(--neon-blue);
+  display:flex; align-items:center; justify-content:center; font-size:1.25rem; margin:0 auto 1.1rem;
+}
 .process-title { font-family:var(--font-display); font-weight:700; font-size:1rem; margin-bottom:0.4rem; }
 .process-desc { font-size:0.85rem; color:var(--text-2); max-width:180px; margin:0 auto; line-height:1.5; }
-.process-arrow { color:var(--border-h); font-size:1.3rem; margin-top:1.6rem; align-self:flex-start; }
-@media(max-width:900px){ .process-arrow { display:none; } .process-step { margin-bottom:1.5rem; } }
+.process-arrow { color:var(--neon-purple); font-size:1.3rem; margin-top:0; align-self:center; flex-shrink:0; }
+@media(max-width:900px){ .process-arrow { display:none; } .process-step { margin-bottom:1.25rem; } }
 
 /* ─── CTA NAVY BANNER ─── */
 .cta-navy-banner { background:var(--navy); padding:3.5rem 2rem; }

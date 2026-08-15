@@ -189,6 +189,7 @@ export function ServicesPage({ setPage }) {
             {SERVICES.map((s,i)=>(
               <Reveal key={i} delay={Math.min(i*0.05,0.3)}>
               <div className="glass-card">
+                <span className="card-badge">{String(i + 1).padStart(2, '0')}</span>
                 <div className="service-icon" style={{ background:`${s.color}15`, border:`1px solid ${s.color}28` }}>
                   <span style={{ fontSize:'1.4rem' }}>{s.icon}</span>
                 </div>

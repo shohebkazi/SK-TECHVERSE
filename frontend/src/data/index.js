@@ -1,14 +1,14 @@
 export const SERVICES = [
-  { icon:"🤖", title:"AI Projects",          desc:"Custom AI/ML solutions, predictive models, and intelligent automation systems tailored to your business.",    color:"#00d4ff" },
-  { icon:"💻", title:"Web Development",       desc:"Full-stack web applications using React, Node.js, and modern cloud infrastructure.",                          color:"#a855f7" },
-  { icon:"📱", title:"Android App Dev",       desc:"Native and cross-platform mobile applications with beautiful, intuitive user interfaces.",                    color:"#ec4899" },
-  { icon:"🎓", title:"College Projects",      desc:"Complete academic projects with documentation, PPT presentation, and full source code.",                      color:"#f59e0b" },
-  { icon:"🧾", title:"Billing Software",      desc:"Smart billing & invoicing systems with GST support, inventory, and automated PDF generation.",               color:"#10b981" },
-  { icon:"🏢", title:"ERP Systems",           desc:"Enterprise resource planning solutions tailored precisely to your business workflows and requirements.",       color:"#00d4ff" },
-  { icon:"🛒", title:"E-Commerce Websites",   desc:"High-converting online stores with integrated payment gateways and inventory management systems.",            color:"#a855f7" },
-  { icon:"🎨", title:"UI/UX Design",          desc:"Stunning user interfaces with Figma prototypes, design systems, and pixel-perfect implementations.",          color:"#ec4899" },
-  { icon:"☁️", title:"Cloud Hosting",         desc:"Scalable cloud deployment on AWS, Azure, GCP with automated CI/CD pipelines and monitoring.",                 color:"#f59e0b" },
-  { icon:"🔌", title:"API Development",       desc:"RESTful and GraphQL APIs with comprehensive documentation, versioning, and enterprise-grade security.",        color:"#10b981" },
+  { icon:"🤖", title:"AI Projects",          desc:"Custom AI/ML solutions, predictive models, and intelligent automation systems tailored to your business.",    color:"#00d4ff", features:["Machine Learning","Data Analysis","AI Automation"] },
+  { icon:"💻", title:"Web Development",       desc:"Full-stack web applications using React, Node.js, and modern cloud infrastructure.",                          color:"#a855f7", features:["Full-Stack Development","Responsive Design","Cloud Integration"] },
+  { icon:"📱", title:"Android App Dev",       desc:"Native and cross-platform mobile applications with beautiful, intuitive user interfaces.",                    color:"#ec4899", features:["Android Development","UI/UX Design","App Optimization"] },
+  { icon:"🎓", title:"College Projects",      desc:"Complete academic projects with documentation, PPT presentation, and full source code.",                      color:"#f59e0b", features:["Project Documentation","PPT Presentation","Source Code"] },
+  { icon:"🧾", title:"Billing Software",      desc:"Smart billing & invoicing systems with GST support, inventory, and automated PDF generation.",               color:"#10b981", features:["GST-Ready Invoicing","Inventory Tracking","PDF Automation"] },
+  { icon:"🏢", title:"ERP Systems",           desc:"Enterprise resource planning solutions tailored precisely to your business workflows and requirements.",       color:"#00d4ff", features:["Custom Workflows","Role-Based Access","Analytics Dashboard"] },
+  { icon:"🛒", title:"E-Commerce Websites",   desc:"High-converting online stores with integrated payment gateways and inventory management systems.",            color:"#a855f7", features:["Payment Gateway","Inventory Management","Order Tracking"] },
+  { icon:"🎨", title:"UI/UX Design",          desc:"Stunning user interfaces with Figma prototypes, design systems, and pixel-perfect implementations.",          color:"#ec4899", features:["Figma Prototypes","Design Systems","Pixel-Perfect Build"] },
+  { icon:"☁️", title:"Cloud Hosting",         desc:"Scalable cloud deployment on AWS, Azure, GCP with automated CI/CD pipelines and monitoring.",                 color:"#f59e0b", features:["AWS / Azure / GCP","CI/CD Pipelines","24/7 Monitoring"] },
+  { icon:"🔌", title:"API Development",       desc:"RESTful and GraphQL APIs with comprehensive documentation, versioning, and enterprise-grade security.",        color:"#10b981", features:["REST & GraphQL","API Documentation","Enterprise Security"] },
 ];
 
 export const PROJECTS = [

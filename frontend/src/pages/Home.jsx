@@ -5,7 +5,7 @@ import { getTechIcon } from '../data/techIcons';
 import { resolveImageUrl } from '../utils/image';
 import Reveal from '../components/Reveal';
 import DepthCarousel from '../components/DepthCarousel';
-import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2 } from 'react-icons/fi';
+import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2, FiCheck } from 'react-icons/fi';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 const FILE_BASE = API.replace('/api', '');
@@ -224,12 +224,20 @@ export default function HomePage({ setPage }) {
               {SERVICES.slice(0, 4).map((s, i) => (
                 <Reveal key={i} delay={Math.min(i * 0.06, 0.3)}>
                   <div className="glass-card">
+                    <span className="card-badge">{String(i + 1).padStart(2, '0')}</span>
                     <div className="service-icon" style={{ background:'rgba(var(--np-rgb),0.1)', border:'1px solid rgba(var(--np-rgb),0.3)' }}>
                       <span style={{ fontSize:'1.4rem' }}>{s.icon}</span>
                     </div>
                     <div className="service-title">{s.title}</div>
                     <div className="service-desc">{s.desc}</div>
-                    <div className="service-arrow" onClick={() => setPage('services')}>Learn More →</div>
+                    {s.features && (
+                      <ul className="service-features">
+                        {s.features.map(f => (
+                          <li key={f}><FiCheck /> {f}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <button type="button" className="service-cta" onClick={() => setPage('services')}>Explore More <FiArrowRight /></button>
                   </div>
                 </Reveal>
               ))}
@@ -304,6 +312,7 @@ export default function HomePage({ setPage }) {
               {PROCESS_STEPS.map(([num, title, desc, Icon], i) => (
                 <Reveal key={num} delay={i * 0.08} className="process-step">
                   <div className="process-step-inner">
+                    <span className="card-badge">{String(i + 1).padStart(2, '0')}</span>
                     <div className="process-circle"><Icon /></div>
                     <div className="process-title">{title}</div>
                     <div className="process-desc">{desc}</div>
