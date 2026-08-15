@@ -278,6 +278,48 @@ body.light .hero-grid {
   .hero-btns-row { justify-content:center; }
   .hero-stats-row { justify-content:center !important; }
 }
+/* ─── STATS STRIP (small 4-item row: icon + number + label) ─── */
+.stats-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2.5rem; }
+@media(max-width:640px){ .stats-strip { grid-template-columns:repeat(2,1fr); } }
+.stats-strip-item {
+  display:flex; align-items:center; gap:0.7rem; background:var(--bg-card); border:1px solid var(--border);
+  border-radius:12px; padding:0.9rem 1rem;
+}
+.stats-strip-icon {
+  width:34px; height:34px; flex-shrink:0; border-radius:9px; display:flex; align-items:center; justify-content:center;
+  background:rgba(var(--nb-rgb),0.1); border:1px solid rgba(var(--nb-rgb),0.3); color:var(--neon-blue); font-size:1rem;
+}
+.stats-strip-num { font-family:var(--font-display); font-weight:800; font-size:1.15rem; color:var(--text-1); line-height:1.1; }
+.stats-strip-label { font-size:0.68rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.03em; margin-top:0.15rem; }
+
+/* ─── TRUST BADGES (bottom row: icon + title + subtitle) ─── */
+.trust-badges {
+  display:grid; grid-template-columns:repeat(5,1fr); gap:1.25rem; margin-top:3rem;
+  padding-top:2.5rem; border-top:1px solid var(--border);
+}
+@media(max-width:900px){ .trust-badges { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:480px){ .trust-badges { grid-template-columns:1fr; } }
+.trust-badge-item { display:flex; align-items:flex-start; gap:0.7rem; }
+.trust-badge-icon {
+  width:36px; height:36px; flex-shrink:0; border-radius:10px; display:flex; align-items:center; justify-content:center;
+  background:rgba(var(--nb-rgb),0.1); border:1px solid rgba(var(--nb-rgb),0.3); color:var(--neon-blue); font-size:1.05rem;
+}
+.trust-badge-title { font-family:var(--font-ui); font-weight:700; font-size:0.82rem; color:var(--text-1); }
+.trust-badge-sub { font-size:0.72rem; color:var(--text-3); margin-top:0.15rem; line-height:1.4; }
+
+/* ─── RATING BADGE (avatars + star rating, top-right of a section) ─── */
+.rating-badge { display:inline-flex; align-items:center; gap:0.6rem; background:var(--bg-card); border:1px solid var(--border); border-radius:100px; padding:0.5rem 1rem 0.5rem 0.5rem; }
+.rating-badge-avatars { display:flex; }
+.rating-badge-avatars span {
+  width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple));
+  border:2px solid var(--bg-card); margin-left:-8px; display:flex; align-items:center; justify-content:center;
+  font-size:0.65rem; font-weight:700; color:#fff;
+}
+.rating-badge-avatars span:first-child { margin-left:0; }
+.rating-badge-score { font-family:var(--font-display); font-weight:800; font-size:0.85rem; color:var(--text-1); }
+.rating-badge-stars { color:#F59E0B; font-size:0.7rem; letter-spacing:1px; }
+.rating-badge-sub { font-size:0.66rem; color:var(--text-3); }
+
 .hero-badge {
   display:inline-flex; align-items:center; gap:0.5rem;
   background:rgba(var(--nb-rgb),0.09); border:1px solid rgba(var(--nb-rgb),0.24);
@@ -820,6 +862,43 @@ body.light .footer { background:rgba(220,228,255,0.97); }
 
 /* ─── MAP ─── */
 .map-box { height:250px; background:linear-gradient(135deg,rgba(var(--nb-rgb),0.05),rgba(var(--np-rgb),0.05)); border:1px solid var(--border); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; color:var(--text-3); font-size:2.5rem; margin-top:2rem; }
+
+/* ─── CONTACT INFO CARDS (2x2: Call/Email/WhatsApp/Visit) ─── */
+.contact-info-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
+@media(max-width:480px){ .contact-info-cards { grid-template-columns:1fr; } }
+.contact-info-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.25rem; transition:all 0.3s; text-decoration:none; display:block; cursor:pointer; }
+.contact-info-card:hover { border-color:var(--border-h); transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.3); }
+.contact-info-card .contact-icon { margin-bottom:0.85rem; }
+.contact-info-card .contact-label { margin-bottom:0.3rem; }
+.contact-info-card .contact-val { color:var(--text-1); font-weight:700; font-size:0.86rem; }
+.contact-info-card .contact-sub { font-size:0.74rem; color:var(--text-3); margin-top:0.2rem; }
+
+/* ─── "Ready to Start Your Project?" schedule banner ─── */
+.cta-schedule-banner {
+  display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;
+  background:linear-gradient(135deg, rgba(var(--nb-rgb),0.1), rgba(var(--np-rgb),0.1));
+  border:1px solid rgba(var(--nb-rgb),0.25); border-radius:18px; padding:1.75rem 2rem; margin-top:3rem;
+}
+.cta-schedule-left { display:flex; align-items:center; gap:1rem; }
+.cta-schedule-icon { width:48px; height:48px; border-radius:12px; background:rgba(var(--nb-rgb),0.15); border:1px solid rgba(var(--nb-rgb),0.35); display:flex; align-items:center; justify-content:center; color:var(--neon-blue); font-size:1.3rem; flex-shrink:0; }
+.cta-schedule-title { font-family:var(--font-display); font-weight:800; font-size:1.15rem; }
+.cta-schedule-title span { color:var(--neon-purple); }
+.cta-schedule-sub { font-size:0.85rem; color:var(--text-2); margin-top:0.2rem; }
+
+/* ─── Office panel (logo + address, glow backdrop) ─── */
+.office-panel {
+  position:relative; margin-top:2.5rem; border-radius:20px; overflow:hidden; border:1px solid var(--border);
+  background:radial-gradient(circle at 30% 30%, rgba(var(--nb-rgb),0.14), transparent 60%), var(--bg-card);
+  padding:3rem 2rem; text-align:center;
+}
+.office-panel-logo {
+  width:88px; height:88px; border-radius:50%; margin:0 auto 1.25rem; display:flex; align-items:center; justify-content:center;
+  background:var(--bg-card-h); border:2px solid rgba(var(--nb-rgb),0.4); box-shadow:0 0 40px rgba(var(--nb-rgb),0.35);
+}
+.office-panel-logo img { width:52px; height:52px; object-fit:contain; }
+.office-panel-title { font-family:var(--font-display); font-weight:800; font-size:1.3rem; margin-bottom:0.5rem; }
+.office-panel-addr { font-size:0.9rem; color:var(--text-2); margin-bottom:0.3rem; }
+.office-panel-hours { font-size:0.8rem; color:var(--text-3); }
 
 /* ─── PAGE ANIMATION ─── */
 .page-enter { animation:pageIn 0.45s ease forwards; }

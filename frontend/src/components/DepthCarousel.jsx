@@ -34,6 +34,8 @@ const DepthCarousel = ({
   showIndicators = true,
   onChange,
   onCardAction,
+  kickerPrefix = 'Featured Project',
+  ctaLabel = 'View Case Study →',
   className = ''
 }) => {
   const data = useMemo(() => (Array.isArray(items) ? items : []).map(normalizeItem), [items]);
@@ -360,7 +362,10 @@ const DepthCarousel = ({
             key={item.id || i}
             className="depth-carousel__card"
             ref={el => (cardRefs.current[i] = el)}
-            style={{ width: cardWidth, height: cardHeight, borderRadius: radius }}
+            style={{
+              width: cardWidth, height: cardHeight, borderRadius: radius,
+              ...(item.ribbon ? { boxShadow: '0 0 0 2px rgba(168,85,247,0.55), 0 30px 70px -18px rgba(168,85,247,0.45)' } : {})
+            }}
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${count}`}
             aria-hidden={active !== i}
@@ -374,9 +379,10 @@ const DepthCarousel = ({
             />
             {(item.title || item.description) && (
               <div className="depth-carousel__scrim">
+                {item.ribbon && <span className="depth-carousel__ribbon">★ {item.ribbon}</span>}
                 {item.category && <span className="depth-carousel__badge">{item.category}</span>}
                 <div className="depth-carousel__body">
-                  {item.category && <div className="depth-carousel__kicker">Featured Project · {item.category}</div>}
+                  {item.category && <div className="depth-carousel__kicker">{kickerPrefix} · {item.category}</div>}
                   {item.title && <div className="depth-carousel__title">{item.title}</div>}
                   {item.description && <p className="depth-carousel__desc">{item.description}</p>}
                   {onCardAction && (
@@ -385,7 +391,7 @@ const DepthCarousel = ({
                       className="depth-carousel__cta"
                       onClick={e => { e.stopPropagation(); onCardClick(i); }}
                     >
-                      View Case Study →
+                      {ctaLabel}
                     </button>
                   )}
                 </div>

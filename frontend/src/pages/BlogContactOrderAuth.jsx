@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { BLOG_POSTS, SERVICES } from '../data';
+import { FiPhone, FiMail, FiMapPin, FiCalendar, FiSend, FiZap, FiClock, FiHeadphones, FiCheckCircle, FiTrendingUp } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -70,37 +72,53 @@ export function ContactPage() {
     }
   };
 
+  const INFO_CARDS = [
+    { icon:<FiPhone />,   label:'Call Us',    val:'+91 74107 21438', sub:'Mon - Sat, 10AM - 7PM', href:'tel:+917410721438' },
+    { icon:<FiMail />,    label:'Email Us',   val:'sktechverse@gmail.com', sub:'We reply within 24hrs', href:'mailto:sktechverse@gmail.com' },
+    { icon:<FaWhatsapp />,label:'WhatsApp',   val:'+91 74107 21438', sub:'Quick support on chat', href:'https://wa.me/917410721438' },
+    { icon:<FiMapPin />,  label:'Visit Us',   val:'India, Maharashtra', sub:'Remote + On-site', href:'#office' },
+  ];
+
+  const TRUST = [
+    { icon:<FiZap />,         title:'Fast Response',    sub:'Within 24 Hours' },
+    { icon:<FiTrendingUp />,  title:'Project Updates',  sub:'Regular & Transparent' },
+    { icon:<FiClock />,       title:'On-Time Delivery', sub:'Always, Every Time' },
+    { icon:<FiHeadphones />,  title:'24/7 Support',     sub:"We're Always Here" },
+    { icon:<FiCheckCircle />, title:'Satisfaction',     sub:'100% Guaranteed' },
+  ];
+
   return (
     <div className="page-enter">
       <section className="section" style={{ paddingTop:'8rem' }}>
         <div className="section-inner">
           <div style={{ textAlign:'center' }}>
             <span className="section-tag">Get In Touch</span>
-            <h2 className="section-title">Contact <span>Us</span></h2>
-            <p className="section-sub">Ready to start? We respond within 2 hours on business days.</p>
+            <h2 className="section-title">Let's Build Something <span>Amazing Together</span></h2>
+            <p className="section-sub">Have a project in mind or want to explore how we can help your business grow? We'd love to hear from you!</p>
           </div>
+
           <div className="contact-grid">
             <div>
-              <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.15rem', fontWeight:700, marginBottom:'2rem' }}>Contact Information</h3>
-              {[['📧','Email','sktechverse@gmail.com'],['📞','Phone','+91 74107 21438'],
-                ['💬','WhatsApp','+91 74107 21438 (24/7)'],['📍','Location','India (Remote + On-site)'],
-                ['⏰','Response','Within 2 business hours']].map(([icon,label,val])=>(
-                <div key={label} className="contact-item">
-                  <div className="contact-icon">{icon}</div>
-                  <div><div className="contact-label">{label}</div><div className="contact-val">{val}</div></div>
-                </div>
-              ))}
-              <div style={{ marginTop:'2rem' }}>
-                <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.75rem', fontWeight:600, letterSpacing:'0.1em', color:'var(--neon-blue)', textTransform:'uppercase', marginBottom:'0.75rem' }}>Follow Us</div>
-                <div style={{ display:'flex', gap:'0.75rem' }}>
-                  {['𝕏','in','🐙','📘'].map((s,i)=><a key={i} className="social-btn" href="#" onClick={e=>e.preventDefault()}>{s}</a>)}
-                </div>
+              <div className="contact-info-cards">
+                {INFO_CARDS.map(c => (
+                  <a key={c.label} className="contact-info-card" href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                    <div className="contact-icon">{c.icon}</div>
+                    <div className="contact-label">{c.label}</div>
+                    <div className="contact-val">{c.val}</div>
+                    <div className="contact-sub">{c.sub}</div>
+                  </a>
+                ))}
               </div>
-              <div className="map-box">
-                <span>📍</span>
-                <div style={{ fontSize:'0.85rem', fontFamily:'var(--font-ui)', textAlign:'center' }}>India — Remote &amp; On-site Available</div>
+
+              <div className="rating-badge">
+                <div className="rating-badge-avatars"><span>S</span><span>K</span><span>+</span></div>
+                <div>
+                  <div className="rating-badge-score">4.8/5 <span className="rating-badge-stars">★★★★★</span></div>
+                  <div className="rating-badge-sub">Trusted by 10+ businesses worldwide</div>
+                </div>
               </div>
             </div>
+
             <div className="glass-card">
               {sent ? (
                 <div style={{ textAlign:'center', padding:'3rem 1rem' }}>
@@ -110,30 +128,68 @@ export function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={submit}>
-                  <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.05rem', fontWeight:700, marginBottom:'1.5rem' }}>Send a Message</h3>
+                  <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.05rem', fontWeight:700, marginBottom:'0.35rem' }}>Send Us a Message</h3>
+                  <p style={{ fontSize:'0.82rem', color:'var(--text-3)', marginBottom:'1.5rem' }}>Fill out the form and we'll get back to you soon.</p>
                   {err && (
                     <div style={{ background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.2)', borderRadius:8, padding:'0.75rem 1rem', marginBottom:'1.25rem', fontSize:'0.85rem', color:'#ef4444' }}>
                       ⚠️ {err}
                     </div>
                   )}
                   <div className="form-row">
-                    <div className="form-group"><label className="form-label">Name</label><input className="form-input" placeholder="Your full name" value={form.name} onChange={f('name')} required/></div>
-                    <div className="form-group"><label className="form-label">Email</label><input type="email" className="form-input" placeholder="your@email.com" value={form.email} onChange={f('email')} required/></div>
+                    <div className="form-group"><label className="form-label">Your Name</label><input className="form-input" placeholder="Your full name" value={form.name} onChange={f('name')} required/></div>
+                    <div className="form-group"><label className="form-label">Your Email</label><input type="email" className="form-input" placeholder="your@email.com" value={form.email} onChange={f('email')} required/></div>
                   </div>
                   <div className="form-row">
                     <div className="form-group"><label className="form-label">Phone</label><input className="form-input" placeholder="+91-XXXXXXXXXX" value={form.phone} onChange={f('phone')}/></div>
-                    <div className="form-group"><label className="form-label">Subject</label><input className="form-input" placeholder="Project type" value={form.subject} onChange={f('subject')} required/></div>
+                    <div className="form-group"><label className="form-label">Subject</label><input className="form-input" placeholder="Tell us about your project..." value={form.subject} onChange={f('subject')} required/></div>
                   </div>
                   <div className="form-group"><label className="form-label">Message</label><textarea className="form-textarea" placeholder="Tell us about your project..." value={form.message} onChange={f('message')} required/></div>
-                  <button type="submit" className="btn-primary" style={{ width:'100%', border:'none' }} disabled={busy}>
-                    {busy?'⏳ Sending...':'🚀 Send Message'}
+                  <button type="submit" className="btn-primary" style={{ width:'100%', border:'none', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.5rem' }} disabled={busy}>
+                    {busy ? 'Sending...' : <>Send Message <FiSend /></>}
                   </button>
-                  <p style={{ textAlign:'center', marginTop:'1rem', fontSize:'0.8rem', color:'var(--text-3)' }}>
-                    Or chat on <a href="https://wa.me/917410721438" target="_blank" rel="noopener noreferrer" style={{ color:'#25D366', textDecoration:'none', fontWeight:600 }}>WhatsApp →</a>
+                  <p style={{ textAlign:'center', marginTop:'1rem', fontSize:'0.76rem', color:'var(--text-3)' }}>
+                    🔒 We respect your privacy. Your information is safe with us.
                   </p>
                 </form>
               )}
             </div>
+          </div>
+
+          {/* Ready to Start Your Project? */}
+          <div className="cta-schedule-banner">
+            <div className="cta-schedule-left">
+              <div className="cta-schedule-icon"><FiZap /></div>
+              <div>
+                <div className="cta-schedule-title">Ready to <span>Start Your Project?</span></div>
+                <div className="cta-schedule-sub">Book a free consultation call with our experts.</div>
+              </div>
+            </div>
+            <a href="https://wa.me/917410721438" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background:'var(--neon-purple)', textDecoration:'none', display:'inline-flex', alignItems:'center', gap:'0.5rem' }}>
+              <FiCalendar /> Schedule a Call
+            </a>
+          </div>
+
+          {/* Office panel */}
+          <div id="office" className="office-panel">
+            <div className="office-panel-logo"><img src="/assets/logo.png" alt="SK TECHVERSE" /></div>
+            <div className="office-panel-title">Our Office</div>
+            <div className="office-panel-addr"><FiMapPin style={{ marginRight:'0.35rem', verticalAlign:'-2px' }} />SK TECHVERSE, Nanded, Maharashtra, India — 431604</div>
+            <div className="office-panel-hours">Mon – Sat: 10:00 AM – 7:00 PM</div>
+            <p style={{ maxWidth:420, margin:'1rem auto 0', fontSize:'0.85rem', color:'var(--text-2)' }}>
+              We're more than just a service provider — we're your growth partner.
+            </p>
+          </div>
+
+          <div className="trust-badges">
+            {TRUST.map(b => (
+              <div key={b.title} className="trust-badge-item">
+                <div className="trust-badge-icon">{b.icon}</div>
+                <div>
+                  <div className="trust-badge-title">{b.title}</div>
+                  <div className="trust-badge-sub">{b.sub}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

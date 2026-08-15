@@ -5,7 +5,7 @@ import { getTechIcon } from '../data/techIcons';
 import { resolveImageUrl } from '../utils/image';
 import Reveal from '../components/Reveal';
 import DepthCarousel from '../components/DepthCarousel';
-import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2, FiCheck } from 'react-icons/fi';
+import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2, FiCheck, FiShield, FiClock, FiHeadphones, FiLock, FiRocket } from 'react-icons/fi';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 const FILE_BASE = API.replace('/api', '');
@@ -49,6 +49,26 @@ const AI_LINKS = [
   { name:'Claude',  mark:'✳', color:'#D97757', url:`https://claude.ai/new?q=${encodeURIComponent(AI_QUESTION)}` },
   { name:'Gemini',  mark:'✧', color:'#4285F4', url:`https://gemini.google.com/app?q=${encodeURIComponent(AI_QUESTION)}` },
   { name:'Grok',    mark:'✕', color:'#111111', url:`https://grok.com/?q=${encodeURIComponent(AI_QUESTION)}` },
+];
+
+const SERVICE_STATS = [
+  { icon: <FiRocket />, num: '50+', label: 'Projects Delivered' },
+  { icon: <FiCode />,   num: '15+', label: 'Technologies Used' },
+  { icon: <FiTarget />, num: '10+', label: 'Happy Clients' },
+  { icon: <FiZap />,    num: '3+',  label: 'Years' },
+];
+const PROJECT_STATS = [
+  { icon: <FiRocket />, num: '25+', label: 'Projects Delivered' },
+  { icon: <FiCode />,   num: '15+', label: 'Technologies Used' },
+  { icon: <FiTarget />, num: '10+', label: 'Happy Clients' },
+  { icon: <FiZap />,    num: '3+',  label: 'Years of Excellence' },
+];
+const TRUST_BADGES = [
+  { icon: <FiShield />,     title: 'Quality Assured',   sub: 'We follow best practices to deliver top-notch quality.' },
+  { icon: <FiClock />,      title: 'On-Time Delivery',  sub: 'We respect deadlines and deliver on time, every time.' },
+  { icon: <FiHeadphones />, title: '24/7 Support',      sub: 'Our team is always here to support your growth.' },
+  { icon: <FiLock />,       title: 'Secure & Scalable', sub: 'We build secure and scalable solutions for your business.' },
+  { icon: <FiTrendingUp />, title: 'Growth Focused',    sub: 'We build solutions that help your business grow.' },
 ];
 
 export default function HomePage({ setPage }) {
@@ -214,32 +234,77 @@ export default function HomePage({ setPage }) {
       <Reveal>
         <section className="section">
           <div className="section-inner">
-            <div>
-              <span className="section-tag">What We Do</span>
-              <h2 className="section-title">Services We <span>Provide</span></h2>
-              <p className="section-sub" style={{ margin:0 }}>End-to-end digital solutions to help your business grow, scale and succeed in the digital world.</p>
+            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', flexWrap:'wrap', gap:'1.5rem' }}>
+              <div>
+                <span className="section-tag">What We Do</span>
+                <h2 className="section-title">Services We <span>Provide</span></h2>
+                <p className="section-sub" style={{ margin:0 }}>End-to-end digital solutions to help your business grow, scale and succeed in the digital world.</p>
+              </div>
+              <div className="rating-badge">
+                <div className="rating-badge-avatars">
+                  <span>S</span><span>K</span><span>+</span>
+                </div>
+                <div>
+                  <div className="rating-badge-score">4.9/5 <span className="rating-badge-stars">★★★★★</span></div>
+                  <div className="rating-badge-sub">Trusted by 10+ Businesses Worldwide</div>
+                </div>
+              </div>
             </div>
 
-            <div className="services-grid" style={{ marginTop:'2.5rem' }}>
-              {SERVICES.slice(0, 4).map((s, i) => (
-                <Reveal key={i} delay={Math.min(i * 0.06, 0.3)}>
-                  <div className="glass-card">
-                    <span className="card-badge">{String(i + 1).padStart(2, '0')}</span>
-                    <div className="service-icon" style={{ background:'rgba(var(--np-rgb),0.1)', border:'1px solid rgba(var(--np-rgb),0.3)' }}>
-                      <span style={{ fontSize:'1.4rem' }}>{s.icon}</span>
-                    </div>
-                    <div className="service-title">{s.title}</div>
-                    <div className="service-desc">{s.desc}</div>
-                    {s.features && (
-                      <ul className="service-features">
-                        {s.features.map(f => (
-                          <li key={f}><FiCheck /> {f}</li>
-                        ))}
-                      </ul>
-                    )}
-                    <button type="button" className="service-cta" onClick={() => setPage('services')}>Explore More <FiArrowRight /></button>
+            <div className="stats-strip" style={{ marginTop:'2.5rem' }}>
+              {SERVICE_STATS.map(s => (
+                <div key={s.label} className="stats-strip-item">
+                  <div className="stats-strip-icon">{s.icon}</div>
+                  <div>
+                    <div className="stats-strip-num">{s.num}</div>
+                    <div className="stats-strip-label">{s.label}</div>
                   </div>
-                </Reveal>
+                </div>
+              ))}
+            </div>
+
+            <div className="proj-carousel-wrap" style={{ height: isMobile ? 460 : 520, position:'relative' }}>
+              <DepthCarousel
+                items={SERVICES.slice(0, 5).map((s, i) => ({
+                  id: s.title,
+                  image: `https://picsum.photos/seed/sk-service-${i}/700/900`,
+                  alt: s.title,
+                  title: s.title,
+                  category: s.title.split(' ')[0],
+                  description: s.desc,
+                  ribbon: i === 2 ? 'Most Popular' : null,
+                }))}
+                cardWidth={isMobile ? 300 : 320}
+                cardHeight={isMobile ? 300 : 420}
+                radius={22}
+                depth={isMobile ? 90 : 210}
+                spread={isMobile ? 18 : 85}
+                tilt={isMobile ? 14 : 18}
+                tiltDirection="right"
+                perspective={1400}
+                visibleCards={isMobile ? 2 : 3}
+                falloff={0.22}
+                blur={5}
+                autoplay
+                autoplayDelay={4600}
+                loop
+                showControls={!isMobile}
+                showIndicators
+                kickerPrefix="Our Service"
+                ctaLabel="Explore Service →"
+                onCardAction={() => setPage('services')}
+              />
+            </div>
+
+            <div className="trust-badges">
+              {TRUST_BADGES.map(b => (
+                <div key={b.title} className="trust-badge-item">
+                  <div className="trust-badge-icon">{b.icon}</div>
+                  <div>
+                    <div className="trust-badge-title">{b.title}</div>
+                    <div className="trust-badge-sub">{b.sub}</div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -250,15 +315,23 @@ export default function HomePage({ setPage }) {
       <Reveal>
         <section className="section navy-band">
           <div className="section-inner">
-            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'1.5rem', marginBottom:'2.5rem' }}>
+            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'1.5rem', marginBottom:'2rem' }}>
               <div>
                 <span className="section-tag light">Our Work</span>
                 <h2 className="section-title light">Featured <span>Projects</span></h2>
                 <p className="section-sub light" style={{ margin:0 }}>We deliver impactful solutions that drive growth and success.</p>
               </div>
-              <button className="btn-primary" style={{ background:'var(--neon-purple)' }} onClick={() => setPage('projects')}>
-                View All Projects <FiArrowRight />
-              </button>
+              <div className="stats-strip" style={{ marginBottom:0, gridTemplateColumns:'repeat(4,auto)' }}>
+                {PROJECT_STATS.map(s => (
+                  <div key={s.label} className="stats-strip-item">
+                    <div className="stats-strip-icon">{s.icon}</div>
+                    <div>
+                      <div className="stats-strip-num">{s.num}</div>
+                      <div className="stats-strip-label">{s.label}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {projLoading ? (
@@ -296,6 +369,12 @@ export default function HomePage({ setPage }) {
                 />
               </div>
             )}
+
+            <div style={{ textAlign:'center', marginTop:'2rem' }}>
+              <button className="btn-primary" style={{ background:'var(--neon-purple)' }} onClick={() => setPage('projects')}>
+                View All Projects <FiArrowRight />
+              </button>
+            </div>
           </div>
         </section>
       </Reveal>
