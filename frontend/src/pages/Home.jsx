@@ -5,7 +5,7 @@ import { getTechIcon } from '../data/techIcons';
 import { resolveImageUrl } from '../utils/image';
 import Reveal from '../components/Reveal';
 import DepthCarousel from '../components/DepthCarousel';
-import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2, FiCheck, FiShield, FiClock, FiHeadphones, FiLock, FiRocket } from 'react-icons/fi';
+import { FiArrowRight, FiPlay, FiSearch, FiEdit3, FiCode, FiSend, FiPhone, FiTrendingUp, FiTarget, FiZap, FiBarChart2, FiCheck, FiShield, FiClock, FiHeadphones, FiLock, FiAward } from 'react-icons/fi';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 const FILE_BASE = API.replace('/api', '');
@@ -52,13 +52,13 @@ const AI_LINKS = [
 ];
 
 const SERVICE_STATS = [
-  { icon: <FiRocket />, num: '50+', label: 'Projects Delivered' },
+  { icon: <FiAward />, num: '50+', label: 'Projects Delivered' },
   { icon: <FiCode />,   num: '15+', label: 'Technologies Used' },
   { icon: <FiTarget />, num: '10+', label: 'Happy Clients' },
   { icon: <FiZap />,    num: '3+',  label: 'Years' },
 ];
 const PROJECT_STATS = [
-  { icon: <FiRocket />, num: '25+', label: 'Projects Delivered' },
+  { icon: <FiAward />, num: '25+', label: 'Projects Delivered' },
   { icon: <FiCode />,   num: '15+', label: 'Technologies Used' },
   { icon: <FiTarget />, num: '10+', label: 'Happy Clients' },
   { icon: <FiZap />,    num: '3+',  label: 'Years of Excellence' },
