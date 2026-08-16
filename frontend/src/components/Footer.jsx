@@ -9,7 +9,7 @@ export default function Footer({ setPage }) {
     { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
     { Icon: FaInstagram,  href: '#', label: 'Instagram' },
     { Icon: FaYoutube,    href: '#', label: 'YouTube' },
-    { Icon: FaWhatsapp,   href: 'https://wa.me/917410724138', label: 'WhatsApp' },
+    { Icon: FaWhatsapp,   href: 'https://wa.me/917410721438', label: 'WhatsApp' },
   ];
 
   return (
@@ -60,8 +60,8 @@ export default function Footer({ setPage }) {
           <div className="footer-heading">Contact</div>
           <ul className="footer-links footer-links-icon">
             <li><a href="mailto:skteckverse@gmail.com"><FiMail /> skteckverse@gmail.com</a></li>
-            <li><a href="tel:+917410724138"><FiPhone /> +91-7410724138</a></li>
-            <li><a href="https://wa.me/917410724138" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp (24/7)</a></li>
+            <li><a href="tel:+917410721438"><FiPhone /> +91-7410721438</a></li>
+            <li><a href="https://wa.me/917410721438" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp (24/7)</a></li>
             <li><a href="https://sktechverse.com" target="_blank" rel="noopener noreferrer"><FiGlobe /> sktechverse.com</a></li>
             <li><a><FiMapPin /> India (Remote + On-site)</a></li>
           </ul>
