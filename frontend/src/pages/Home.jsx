@@ -71,17 +71,30 @@ const TRUST_BADGES = [
   { icon: <FiTrendingUp />, title: 'Growth Focused',    sub: 'We build solutions that help your business grow.' },
 ];
 
+const PROJECT_CATEGORIES = ['All Projects', 'AI Solutions', 'Web Development', 'Mobile Apps', 'College Projects'];
+function matchesProjectFilter(project, filter) {
+  if (filter === 'All Projects') return true;
+  const cat = (project.category || '').toLowerCase();
+  if (filter === 'AI Solutions') return cat.includes('ai');
+  if (filter === 'Web Development') return cat.includes('web');
+  if (filter === 'Mobile Apps') return cat.includes('android') || cat.includes('mobile') || cat.includes('app');
+  if (filter === 'College Projects') return cat.includes('college') || cat.includes('academic');
+  return true;
+}
+
 export default function HomePage({ setPage }) {
   const [statsRef, statsVis] = useInView(0.3);
   const typed = useTyping(['AI-Powered Solutions','Web Applications','Mobile Apps','ERP Systems','Custom Software']);
   const [projects, setProjects] = useState([]);
   const [projLoading, setProjLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth <= 640);
+  const [showProcessModal, setShowProcessModal] = useState(false);
+  const [projectFilter, setProjectFilter] = useState('All Projects');
 
   useEffect(() => {
-    fetch(`${API}/projects?limit=3`)
+    fetch(`${API}/projects?limit=12`)
       .then(r => r.json())
-      .then(data => setProjects((data.projects || data || []).slice(0, 3)))
+      .then(data => setProjects((data.projects || data || []).slice(0, 12)))
       .catch(() => {})
       .finally(() => setProjLoading(false));
   }, []);
@@ -240,13 +253,18 @@ export default function HomePage({ setPage }) {
                 <h2 className="section-title">Services We <span>Provide</span></h2>
                 <p className="section-sub" style={{ margin:0 }}>End-to-end digital solutions to help your business grow, scale and succeed in the digital world.</p>
               </div>
-              <div className="rating-badge">
-                <div className="rating-badge-avatars">
-                  <span>S</span><span>K</span><span>+</span>
-                </div>
-                <div>
-                  <div className="rating-badge-score">4.9/5 <span className="rating-badge-stars">★★★★★</span></div>
-                  <div className="rating-badge-sub">Trusted by 10+ Businesses Worldwide</div>
+              <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', gap:'0.9rem' }}>
+                <button type="button" className="see-work-btn" onClick={() => setShowProcessModal(true)}>
+                  <FiPlay /> See How We Work
+                </button>
+                <div className="rating-badge">
+                  <div className="rating-badge-avatars">
+                    <span>S</span><span>K</span><span>+</span>
+                  </div>
+                  <div>
+                    <div className="rating-badge-score">4.9/5 <span className="rating-badge-stars">★★★★★</span></div>
+                    <div className="rating-badge-sub">Trusted by 10+ Businesses Worldwide</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,6 +290,7 @@ export default function HomePage({ setPage }) {
                   title: s.title,
                   category: s.title.split(' ')[0],
                   description: s.desc,
+                  tags: s.features,
                   ribbon: i === 2 ? 'Most Popular' : null,
                 }))}
                 cardWidth={isMobile ? 300 : 320}
@@ -334,20 +353,35 @@ export default function HomePage({ setPage }) {
               </div>
             </div>
 
+            <div className="category-tabs">
+              {PROJECT_CATEGORIES.map(cat => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`category-tab${projectFilter === cat ? ' active' : ''}`}
+                  onClick={() => setProjectFilter(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
             {projLoading ? (
               <div style={{ textAlign:'center', padding:'2rem', color:'rgba(255,255,255,0.6)' }}>Loading projects...</div>
-            ) : projects.length === 0 ? (
-              <div style={{ textAlign:'center', padding:'2rem', color:'rgba(255,255,255,0.6)' }}>No projects yet — check back soon.</div>
+            ) : projects.filter(p => matchesProjectFilter(p, projectFilter)).length === 0 ? (
+              <div style={{ textAlign:'center', padding:'2rem', color:'rgba(255,255,255,0.6)' }}>No projects in this category yet — check back soon.</div>
             ) : (
               <div className="proj-carousel-wrap" style={{ height: isMobile ? 440 : 500, position:'relative' }}>
                 <DepthCarousel
-                  items={projects.map(p => ({
+                  key={projectFilter}
+                  items={projects.filter(p => matchesProjectFilter(p, projectFilter)).map(p => ({
                     id: p._id,
                     image: p.image ? resolveImageUrl(p.image, FILE_BASE) : placeholderThumb(p.title),
                     alt: p.title,
                     title: p.title,
                     category: p.category || 'Web Development',
                     description: p.description,
+                    liveUrl: p.liveUrl || p.link,
                   }))}
                   cardWidth={isMobile ? 300 : 340}
                   cardHeight={isMobile ? 300 : 430}
@@ -440,6 +474,28 @@ export default function HomePage({ setPage }) {
           </div>
         </section>
       </Reveal>
+
+      {/* ── "See How We Work" cinematic process modal ── */}
+      {showProcessModal && (
+        <div className="process-modal-overlay" onClick={() => setShowProcessModal(false)}>
+          <div className="process-modal" onClick={e => e.stopPropagation()}>
+            <button type="button" className="process-modal-close" onClick={() => setShowProcessModal(false)} aria-label="Close">✕</button>
+            <span className="section-tag">How We Work</span>
+            <h2 className="section-title" style={{ marginBottom:'2rem' }}>From Idea to <span>Launch</span></h2>
+            <div className="process-modal-steps">
+              {PROCESS_STEPS.map(([num, title, desc, Icon], i) => (
+                <div key={num} className="process-modal-step" style={{ animationDelay: `${i * 0.15}s` }}>
+                  <div className="process-modal-num">{num}</div>
+                  <div className="process-modal-icon"><Icon /></div>
+                  <div className="process-modal-title">{title}</div>
+                  <div className="process-modal-desc">{desc}</div>
+                  {i < PROCESS_STEPS.length - 1 && <span className="process-modal-arrow">→</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

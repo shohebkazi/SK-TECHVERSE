@@ -385,15 +385,33 @@ const DepthCarousel = ({
                   {item.category && <div className="depth-carousel__kicker">{kickerPrefix} · {item.category}</div>}
                   {item.title && <div className="depth-carousel__title">{item.title}</div>}
                   {item.description && <p className="depth-carousel__desc">{item.description}</p>}
-                  {onCardAction && (
-                    <button
-                      type="button"
-                      className="depth-carousel__cta"
-                      onClick={e => { e.stopPropagation(); onCardClick(i); }}
-                    >
-                      {ctaLabel}
-                    </button>
+                  {item.tags && item.tags.length > 0 && (
+                    <div className="depth-carousel__tags">
+                      {item.tags.map(t => <span key={t} className="depth-carousel__tag">{t}</span>)}
+                    </div>
                   )}
+                  <div className="depth-carousel__cta-row">
+                    {onCardAction && (
+                      <button
+                        type="button"
+                        className="depth-carousel__cta"
+                        onClick={e => { e.stopPropagation(); onCardClick(i); }}
+                      >
+                        {ctaLabel}
+                      </button>
+                    )}
+                    {item.liveUrl && (
+                      <a
+                        href={item.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="depth-carousel__live"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        Live Preview
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
