@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider }  from './context/AuthContext';
 
@@ -6,17 +6,32 @@ import { Loader, ScrollProgress } from './components/Effects';
 import Navbar            from './components/Navbar';
 import Footer            from './components/Footer';
 import ChatBot           from './components/ChatBot';
-import { FaWhatsapp }    from 'react-icons/fa6';
+import { FaWhatsapp, FaLinkedinIn, FaXTwitter, FaGithub, FaInstagram, FaBehance } from 'react-icons/fa6';
 
 import HomePage                     from './pages/Home';
 import { AboutPage, ServicesPage }  from './pages/AboutServices';
 import { ProjectsPage, AIPage, PricingPage, TestimonialsPage } from './pages/ProjectsAIPricingTest';
 import { BlogPage, ContactPage, OrderPage, TrackOrderPage, AuthPage } from './pages/BlogContactOrderAuth';
 import { ProjectDetailPage } from './pages/ProjectDetail';
-import AdminDashboard               from './pages/admin/Dashboard';
+
+// Lazy-loaded so admin.css and every admin sub-page (Dashboard pulls in
+// ManageProjects/Orders/Services/Messages/Clients/Analytics) only download
+// and only apply their CSS when someone actually visits /admin — otherwise
+// admin.css was bundling into the SAME stylesheet as the public site and
+// its class names (.btn-primary, .adm-tab, etc.) were colliding with and
+// overriding the public site's own styles on every page, including mobile.
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
 
 
 const NO_CHROME = ['login','admin'];
+
+const SOCIALS = [
+  { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
+  { Icon: FaXTwitter,   href: '#', label: 'X (Twitter)' },
+  { Icon: FaGithub,     href: '#', label: 'GitHub' },
+  { Icon: FaInstagram,  href: '#', label: 'Instagram' },
+  { Icon: FaBehance,    href: '#', label: 'Behance' },
+];
 
 // If the user opens /admin directly, drop them straight into the admin
 // flow (Dashboard already redirects to the login page itself when no
@@ -74,11 +89,20 @@ export default function App() {
             {page==='order'        && <OrderPage          setPage={setPage}/>}
             {page==='track'        && <TrackOrderPage     setPage={setPage}/>}
             {page==='login'        && <AuthPage           setPage={setPage}/>}
-            {page==='admin'        && <AdminDashboard     setPage={setPage}/>}
+            {page==='admin'        && <Suspense fallback={<div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', color:'#fff' }}>Loading admin...</div>}><AdminDashboard setPage={setPage}/></Suspense>}
 
             {showChrome && <Footer setPage={setPage} />}
             <ChatBot />
             <a href="https://wa.me/917410721438" target="_blank" rel="noopener noreferrer" className="wa-fab"><FaWhatsapp /></a>
+            {showChrome && (
+              <div className="social-rail">
+                {SOCIALS.map(({ Icon, href, label }, i) => (
+                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
+                    <Icon />
+                  </a>
+                ))}
+              </div>
+            )}
           </>
         )}
       </AuthProvider>
