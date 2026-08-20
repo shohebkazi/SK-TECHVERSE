@@ -22,7 +22,7 @@ export default function Navbar({ page, setPage }) {
     <>
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-logo" onClick={() => go('home')}>
-          <img src="/assets/logo.png" alt="SK TECHVERSE" className="nav-logo-img" />
+          <img src="/assets/logo-mark.png" alt="SK TECHVERSE" className="nav-logo-img" />
           <div className="nav-logo-text">
             <span className="nav-logo-name">SK TECHVERSE</span>
             <span className="nav-logo-tag">INNOVATE · BUILD · GROW</span>

@@ -171,7 +171,7 @@ export function ContactPage() {
 
           {/* Office panel */}
           <div id="office" className="office-panel">
-            <div className="office-panel-logo"><img src="/assets/logo.png" alt="SK TECHVERSE" /></div>
+            <div className="office-panel-logo"><img src="/assets/logo-mark.png" alt="SK TECHVERSE" /></div>
             <div className="office-panel-title">Our Office</div>
             <div className="office-panel-addr"><FiMapPin style={{ marginRight:'0.35rem', verticalAlign:'-2px' }} />SK TECHVERSE, Nanded, Maharashtra, India — 431604</div>
             <div className="office-panel-hours">Mon – Sat: 10:00 AM – 7:00 PM</div>

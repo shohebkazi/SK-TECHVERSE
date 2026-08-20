@@ -40,7 +40,7 @@ export function Loader({ onDone }) {
 
   return (
     <div className={`loader-screen${hide ? ' hide' : ''}`}>
-      <img src="/assets/logo.png" alt="SK TECHVERSE" className="loader-logo-img" />
+      <img src="/assets/logo-full.png" alt="SK TECHVERSE" className="loader-logo-img" />
       <p style={{ fontFamily:'var(--font-ui)', fontSize:'0.76rem', color:'var(--text-3)', marginTop:'0.75rem', letterSpacing:'0.15em', textTransform:'uppercase' }}>
         Building Smart Digital Solutions
       </p>
